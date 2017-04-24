@@ -15,7 +15,7 @@
         .footer>.container { padding-right: 15px; padding-left: 15px; }        
         code { font-size: 80%; }
     </style>
-    <title>Laravel Gallery</title>
+    <title>mySPACIBLE Admin</title>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -32,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-                <a class="navbar-brand" href="#">Laravel Gallery</a>
+                <a class="navbar-brand" href="#">mySPACIBLE Admin</a>
             </div>
             <!-- nav-collapse -->
             <div id="navbar" class="collapse navbar-collapse">
@@ -60,7 +60,7 @@
     <!-- Begin page content -->
     <div class="container">
         <div class="page-header">
-            <h1>Welcome To Laravel Gallery</h1>
+            <h1>Welcome To mySPACIBLE Admin</h1>
         </div>
         @yield('body') 
     </div> <!--/ End page content -->

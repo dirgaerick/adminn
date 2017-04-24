@@ -5,7 +5,7 @@
         @if(count($images) > 0)
             <div class="col-md-12 text-center" >
                 <a href="{{ url('/image/create') }}" class="btn btn-primary" role="button">
-                    Add New Image
+                    Add New Owner
                 </a>
                 <hr />
                 @include('image_upload.error-notification')
