@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 
 Route::resource('image', 'ImageController');
+
+Route::get('image/edit/{id}', function ($id) {
+    return View('image_upload.editimage');
+});

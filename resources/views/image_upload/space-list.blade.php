@@ -1,17 +1,8 @@
-@extends('image_upload.layout')
+@extends('image_upload.edit-image')
 
-@section('body')
-    <div class="row">
-        @if(count($images) > 0)
-            <div class="col-md-12 text-center" >
-                <a href="{{ url('/image/create') }}" class="btn btn-primary" role="button">
-                    Add New Owner
-                </a>
-                <hr />
-                @include('image_upload.error-notification')
-            </div>
-        @endif
-        @forelse($images as $image)
+@section('space')
+<div class="row">
+@forelse($images as $image)
             <div class="col-md-3">
                 <div class="thumbnail">
                     <a href="{!! route('image.show', $image->id) !!}">
@@ -22,7 +13,7 @@
                         <p>{!! substr($image->description, 0,100) !!}</p>
                         <p>
                         <div class="row text-center" style="padding-left:1em;">
-                            <a href="{{ url('/image/edit/'.$image->id) }}" class="btn btn-warning pull-left">Edit</a>
+                            <a href="{{ url('/image/'.$image->id.'/edit') }}" class="btn btn-warning pull-left">Edit</a>
                             <span class="pull-left">&nbsp;</span>
                             {!! Form::open(['url'=>'/image/'.$image->id, 'class'=>'pull-left']) !!}
                             {!! Form::hidden('_method', 'DELETE') !!}
@@ -36,7 +27,6 @@
         @empty
             <p>No images yet, <a href="{{ url('/image/create') }}">add a new one</a>?</p>
         @endforelse
-        
-    </div>
+		</div>
     <div align="center">{!! $images->render() !!}</div>
 @stop

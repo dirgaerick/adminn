@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Image;
+use App\space;
 
 class ImageController extends Controller
 {
@@ -45,7 +46,8 @@ class ImageController extends Controller
 		 $validation = Validator::make($request->all(), [
             'caption' => 'required|regex:/^[A-Za-z ]+$/',
             'description' => 'required',
-            'userfile' => 'required|image|mimes:jpeg,png|min:1|max:250'
+            'userfile' => 'required|image|mimes:jpeg,png|min:1|max:250',
+			
 		]);
         // Check if it fails //
         if( $validation->fails() ){
@@ -54,16 +56,21 @@ class ImageController extends Controller
 	
 	
         $image = new Image;
+		
 		// upload the image //
         $file = $request->file('userfile');
         $destination_path = 'uploads/';
         $filename = str_random(6).'_'.$file->getClientOriginalName();
         $file->move($destination_path, $filename);
+		
+		
 		// save image data into database //
         $image->file = $destination_path . $filename;
         $image->caption = $request->input('caption');
         $image->description = $request->input('description');
-        $image->save();
+		$image->save();
+	
+		
         return redirect('/')->with('message','You just uploaded an image!');
 }
 
@@ -91,7 +98,9 @@ class ImageController extends Controller
     {
         //
 		$image = Image::find($id);
-        return view('image_upload.edit-image')->with('image', $image);
+		$data = DB::table('space')->where($id_company, $id)->get();
+		$gambar = $data->pluck('file')->first();
+        return view('image_upload.editimage')->with('image', $image);
 
     }
 
@@ -109,7 +118,10 @@ class ImageController extends Controller
         $validation = Validator::make($request->all(), [
         'caption' => 'required|regex:/^[A-Za-z ]+$/',
         'description' => 'required',
-        'userfile' => 'sometimes|image|mimes:jpeg,png|min:1|max:250'
+        'userfile' => 'sometimes|image|mimes:jpeg,png|min:1|max:250',
+		'scaption' => 'required|regex:/^[A-Za-z ]+$/',
+        'sdescription' => 'required',
+        'suserfile' => 'required|image|mimes:jpeg,png|min:1|max:250',
         ]);
 // Check if it fails //
         if( $validation->fails() ){
@@ -126,10 +138,22 @@ class ImageController extends Controller
 			$file->move($destination_path, $filename);
 			$image->file = $destination_path . $filename;
         }
+		$space = new space;
+		$sfile = $request->file('suserfile');
+        $sdestination_path = 'uploads/';
+        $sfilename = str_random(6).'_'.$sfile->getClientOriginalName();
+        $sfile->move($sdestination_path, $sfilename);
+		
 // replace old data with new data from the submitted form //
         $image->caption = $request->input('caption');
         $image->description = $request->input('description');
         $image->save();
+		
+		$space->id_company = $id;
+		$space->file = $sdestination_path . $sfilename;
+        $space->caption = $request->input('scaption');
+        $space->description = $request->input('sdescription');
+        $space->save();
         return redirect('/')->with('message','You just updated an image!');
         }
     
