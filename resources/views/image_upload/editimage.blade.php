@@ -11,10 +11,42 @@
     </div>
 
     <div class="form-group">
-        <label for="caption">Caption</label>
+        <label for="caption">Company name</label>
         {!! Form::text('caption',null,['class'=>'form-control']) !!}
     </div>
-
+	<div class="form-group">
+        <label for="caption">Location</label>
+        {!! Form::text('location',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Email</label>
+        {!! Form::text('email',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Phone Number</label>
+        {!! Form::text('phone_number',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Rating</label>
+        {!! Form::text('rating',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Open Hour</label>
+        {!! Form::text('open_hour',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Facility</label>
+        {!! Form::text('facility',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Quota</label>
+        {!! Form::text('quota',null,['class'=>'form-control']) !!}
+    </div>
+	<div class="form-group">
+        <label for="caption">Price</label>
+        {!! Form::text('price',null,['class'=>'form-control']) !!}
+    </div>
+	
     <div class="form-group">
         <label for="description">Description</label>
         {!! Form::textarea('description',null,['class'=>'form-control']) !!}
@@ -31,8 +63,8 @@
 	
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <a href="{!! route('image.show', $space->id) !!}">
-                        <img id="myImg" src="{{asset($space->file)}}" class="img-responsive"/>
+                    <a href="{!! route('image.show', $image->id) !!}">
+                        <img id="myImg" src="{{asset($image->file)}}" class="img-responsive"/>
                     </a>
                     <div class="caption">
                         <h3>{{$image->caption}}</h3>

@@ -67,6 +67,15 @@ class ImageController extends Controller
 		// save image data into database //
         $image->file = $destination_path . $filename;
         $image->caption = $request->input('caption');
+		$image->type = $request->input('type');
+		$image->rating = $request->input('rating');
+		$image->open_hour = $request->input('open_hour');
+		$image->quota = $request->input('quota');
+		$image->price = $request->input('price');
+		$image->location = $request->input('location');
+		$image->facility = $request->input('facility');
+		$image->email_owner = $request->input('email');
+		$image->phone = $request->input('phone_number');
         $image->description = $request->input('description');
 		$image->save();
 	
@@ -98,8 +107,6 @@ class ImageController extends Controller
     {
         //
 		$image = Image::find($id);
-		$data = DB::table('space')->where($id_company, $id)->get();
-		$gambar = $data->pluck('file')->first();
         return view('image_upload.editimage')->with('image', $image);
 
     }

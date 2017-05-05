@@ -22,7 +22,7 @@
                         <p>{!! substr($image->description, 0,100) !!}</p>
                         <p>
                         <div class="row text-center" style="padding-left:1em;">
-                            <a href="{{ url('/image/edit/'.$image->id) }}" class="btn btn-warning pull-left">Edit</a>
+                            <a href="{{ url('/image/'.$image->id.'/edit') }}" class="btn btn-warning pull-left">Edit</a>
                             <span class="pull-left">&nbsp;</span>
                             {!! Form::open(['url'=>'/image/'.$image->id, 'class'=>'pull-left']) !!}
                             {!! Form::hidden('_method', 'DELETE') !!}
